@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class AddProductAndAmount {
 
-    public void add() throws IOException {
+    public void addProductAndAmount() throws IOException {
         ArrayList<ProductAndAmount> shoppingList = new ArrayList<>();
         boolean isRunning = true;
         System.out.println("'quit' to end creating and show your list");

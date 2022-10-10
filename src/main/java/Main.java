@@ -20,7 +20,7 @@ public class Main {
                     break;
                 case "create":
                     AddProductAndAmount list = new AddProductAndAmount();
-                    list.add();
+                    list.addProductAndAmount();
                     break;
                 case "last":
                     LoadLastSavedList load = new LoadLastSavedList();

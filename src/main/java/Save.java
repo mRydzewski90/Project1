@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Save {
 
-    static int number;
     static String name;
 
     public void saveList(ArrayList<ProductAndAmount> shoppingList) throws IOException {
