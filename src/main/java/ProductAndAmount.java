@@ -14,4 +14,9 @@ public class ProductAndAmount {
     public String getProduct() {
         return this.product;
     }
+
+    public  String toString(){
+        return "produkt: " +  product + " amount: " + amount;
+
+    }
 }

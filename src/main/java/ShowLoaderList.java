@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class ShowLoaderList {
 
     public void yourSavedList() throws FileNotFoundException {
+        String name = Main.scanner.next();
         System.out.println("which list would you like to see?");
-        File lastfile = new File("ShoppingList//List_" + Save.number + ".txt");
-        Save.number = Integer.parseInt(Main.scanner.nextLine());
+        File lastfile = new File("ShoppingList//List_" + name + ".txt");
+
         if (lastfile.exists()) {
             System.out.println("Your shopping list");
             Scanner myReader = new Scanner(lastfile);

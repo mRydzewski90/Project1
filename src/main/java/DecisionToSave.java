@@ -4,15 +4,15 @@ import java.util.ArrayList;
 public class DecisionToSave {
 
     public boolean saveToFile(ArrayList<ProductAndAmount> shoppingList) throws IOException {
-        String inPut;
+        String input;
 
         do {
             System.out.println("\nDo you want to save the created list? 'yes' or 'no', choose correct option");
-            inPut = Main.scanner.next().toLowerCase();
+            input = Main.scanner.next().toLowerCase();
 
-        } while (!inPut.equals("yes") && !inPut.equals("no"));
+        } while (!input.equals("yes") && !input.equals("no"));
 
-        if (inPut.equals("yes")) {
+        if (input.equals("yes")) {
             Save save = new Save();
             save.saveList(shoppingList);
         } else {
