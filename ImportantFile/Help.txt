@@ -1,0 +1,5 @@
+Create: Create new shopping list.
+Last: Your last shopping list.
+Change: You can clone your saved list and change products.
+Delete: Delete saved list.
+Exit: Close the program.
