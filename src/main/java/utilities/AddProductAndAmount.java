@@ -1,3 +1,8 @@
+package utilities;
+
+import app.Main;
+import utilities.ProductAndAmount;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

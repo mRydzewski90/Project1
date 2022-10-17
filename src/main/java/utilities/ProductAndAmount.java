@@ -1,4 +1,7 @@
+package utilities;
+
 public class ProductAndAmount {
+
     private String product;
     private int amount;
 
