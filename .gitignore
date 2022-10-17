@@ -1,6 +1,5 @@
 .idea
 target
-src\main\java\out
-src\main\java\.idea
-ImportantFile\lastListName.txt
+*.iml
 ShoppingList
+/ImportantFile/lastListName.txt

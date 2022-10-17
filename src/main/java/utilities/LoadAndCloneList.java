@@ -17,12 +17,12 @@ public class LoadAndCloneList {
 
             if (choose.equals("show")) {
                 System.out.println("Your Saved Lists");
-                ShowList.listFile(new File("ShoppingList//"));
+                OperationOnList.listFile(new File("ShoppingList//"));
                 ShowLoaderList a = new ShowLoaderList();
                 a.yourSavedList();
 
             } else if (choose.equals("clone")) {
-                ShowList.listFile(new File("ShoppingList//"));
+                OperationOnList.listFile(new File("ShoppingList//"));
                 System.out.println("Which list would you like to clone");
                 ShowLoaderList a = new ShowLoaderList();
                 a.yourSavedList();

@@ -10,12 +10,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         AfterStartTheProgram folders = new AfterStartTheProgram();
-        folders.createFolders();
+        folders.createFolder();
         System.out.println("Welcome in Shopping List Application\n");
         String option;
 
         do {
-            System.out.println("\nYou can choose this options : utilities.Help, Create, Last, Change, Delete, Exit");
+            System.out.println("\nYou can choose this options : Help, Create, Last, Change, Delete, Exit");
             option = scanner.next().toLowerCase();
 
             switch (option) {
@@ -29,15 +29,15 @@ public class Main {
                     break;
                 case "last":
                     OperationOnList load = new OperationOnList();
-                    load.LoadYourLastList();
+                    load.loadYourLastList();
                     break;
                 case "delete":
-                    DeleteList deleteList = new DeleteList();
+                    OperationOnList deleteList = new OperationOnList();
                     deleteList.deleteFileWithList();
                     break;
                 case "change":
-                    ChangeProductOrAmountInCloneList change = new ChangeProductOrAmountInCloneList();
-                    change.addList();
+                    OperationOnList change = new OperationOnList();
+                    change.showList();
                     break;
                 default:
                     if (!option.equals("exit"))
