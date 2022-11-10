@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class DecisionToSave {
 
-    public boolean saveToFile(ArrayList<ProductAndAmount> shoppingList) throws IOException {
+    public boolean saveToFile(ArrayList<ItemsAndFilePaths.ShoppingListItems> shoppingList) throws IOException {
         String input;
 
         do {
@@ -25,4 +25,3 @@ public class DecisionToSave {
         return false;
     }
 }
-

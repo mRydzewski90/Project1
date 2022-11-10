@@ -2,4 +2,4 @@
 target
 *.iml
 ShoppingList
-/ImportantFile/lastListName.txt
+/src/main/resources/ImportantFile/lastListName.txt

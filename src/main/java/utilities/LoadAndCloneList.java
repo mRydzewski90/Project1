@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class LoadAndCloneList {
-
+//todo
     public void change() throws FileNotFoundException {
         boolean flag = true;
         while (flag) {

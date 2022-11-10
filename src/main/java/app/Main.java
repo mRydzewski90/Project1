@@ -1,6 +1,8 @@
 package app;
 
-import utilities.*;
+import utilities.AfterStartTheProgram;
+import utilities.Information;
+import utilities.OperationOnList;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -24,8 +26,8 @@ public class Main {
                     printInstruction.loadInformation();
                     break;
                 case "create":
-                    AddProductAndAmount list = new AddProductAndAmount();
-                    list.addProductAndAmount();
+                    OperationOnList list = new OperationOnList();
+                    list.addItemsToList();
                     break;
                 case "last":
                     OperationOnList load = new OperationOnList();

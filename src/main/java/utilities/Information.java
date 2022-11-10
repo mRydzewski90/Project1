@@ -8,7 +8,7 @@ public class Information {
 
     public void loadInformation() throws IOException {
 
-        File helpInfromation = new File("ImportantFile//Help.txt");
+        File helpInfromation = new File("src//main//resources//ImportantFile//Help.txt");
         Scanner myReader = new Scanner(helpInfromation);
 
         while (myReader.hasNext())
