@@ -2,14 +2,21 @@ package utilities;
 
 public class ItemsAndFilePaths {
 
-// Name of files and paths files
+// Saved list name
 
+    private String savedListsFilePath;
     private String listName;
-    private String savedListsFilePath = "ShoppingList//" + listName + ".txt";
+
+
+    public ItemsAndFilePaths(String listName) {
+        this.listName = listName;
+        savedListsFilePath = "ShoppingList//" + listName + ".txt";
+    }
 
     public String getName() {
         return listName;
     }
+
     public void setName(String listName) {
         this.listName = listName;
     }
@@ -18,9 +25,6 @@ public class ItemsAndFilePaths {
         return savedListsFilePath;
     }
 
-    public void setSavedListsFilePath(String newSavedListFilePath) {
-        this.savedListsFilePath = newSavedListFilePath;
-    }
 
 // Shopping list items
 

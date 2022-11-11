@@ -9,25 +9,25 @@ import java.util.Scanner;
 public class OperationOnList {
 
     // private String name;   // modyfikator dostępu
-
+    private static final String SHOPPING_LIST_DIR = "ShoppingList//";
     //todo
+    ItemsAndFilePaths items;
 
     public void saveList(ArrayList<ItemsAndFilePaths.ShoppingListItems> shoppingList) throws IOException {
-        ItemsAndFilePaths n = new ItemsAndFilePaths();
         System.out.println("Enter a file name:");
-        n.setName(Main.scanner.next());
-        //  String name = Main.scanner.next();
-        setName.setListName(name);
-        FileWriter saveFile = new FileWriter(getPath.getSavedListsFilePath());
+        ItemsAndFilePaths items = new ItemsAndFilePaths(Main.scanner.next());
+
+        FileWriter saveFile = new FileWriter(items.getSavedListsFilePath());
         saveFile.write(String.valueOf(shoppingList));
         saveFile.close();
-        File lastNameOfList = new File(getPath.getSavedListsFilePath());
+
+        File lastNameOfList = new File(items.getSavedListsFilePath());
 
         if (lastNameOfList.exists()) {
             System.out.println("Your list has been saved");
-            FileWriter saveName = new FileWriter("src//main//resources//ImportantFile//lastListName.txt");
-            saveName.write(name);
-            saveName.close();
+            saveFile = new FileWriter("src//main//resources//ImportantFile//lastListName.txt");
+            saveFile.write(items.getName());
+            saveFile.close();
         } else {
             System.out.println("Something went wrong, the file was not saved");
         }
@@ -37,7 +37,6 @@ public class OperationOnList {
         BufferedReader fileReader = null;
         String lastListName = "";
         ItemsAndFilePaths getPath = new ItemsAndFilePaths();
-        ItemsAndFilePaths setName = new ItemsAndFilePaths();
 
         try {
             fileReader = new BufferedReader(new FileReader(getPath.getSavedListsFilePath()));
@@ -47,7 +46,7 @@ public class OperationOnList {
                 fileReader.close();
             }
         }
-        File lastList = new File("ShoppingList//" + lastListName + ".txt");
+        File lastList = new File(SHOPPING_LIST_DIR + lastListName + ".txt");
 
         if (lastList.exists()) {
             System.out.println("Your shopping list");
@@ -62,10 +61,10 @@ public class OperationOnList {
     }
 
     public void showList() throws FileNotFoundException {
-        listFile(new File("ShoppingList//"));
+        listFile(new File(SHOPPING_LIST_DIR));
         System.out.println("witch list do you want to change");
         String name = Main.scanner.nextLine();
-        Scanner scan = new Scanner(new File("ShoppingList//List_" + name + ".txt"));
+        Scanner scan = new Scanner(new File(SHOPPING_LIST_DIR + name + ".txt"));
         ArrayList<String> list = new ArrayList<String>();
         while (scan.hasNextLine()) {
             String element = scan.nextLine();
@@ -76,26 +75,25 @@ public class OperationOnList {
     }
 
     public void deleteFileWithList() {
-        ItemsAndFilePaths setName = new ItemsAndFilePaths();
-        ItemsAndFilePaths getPath = new ItemsAndFilePaths();
-        setName.setListName(Main.scanner.nextLine());
-        listFile(new File("ShoppingList//"));
-        System.out.println("Which list you want to delete, choose correct number");
-        File deleteFile = new File(getPath.getSavedListsFilePath());
+
+        listFile(new File(SHOPPING_LIST_DIR));
+        System.out.println("Which list you want to delete? Choose correct number");
+        String listToBeDeleted = Main.scanner.nextLine();
+        File deleteFile = new File(SHOPPING_LIST_DIR + listToBeDeleted + ".txt");
 
         if (!deleteFile.exists()) {
             System.out.println("First you need to create a file to be able to delete it");
         } else {
-            System.out.println("do you want to delete the recently added file? 'yes' or 'no'");
-            String input = Main.scanner.nextLine();
+            System.out.println("Do you want to delete the recently added file? 'yes' or 'no'");
+            listToBeDeleted = Main.scanner.nextLine();
 
-            if (input.equals("yes")) {
+            if (listToBeDeleted.equals("yes")) {
                 deleteFile.delete();
 
                 if (deleteFile.exists()) {
                     System.out.println("Houston, we have a problem");
                 } else {
-                    System.out.println("the file has been deleted ");
+                    System.out.println("The file has been deleted ");
                 }
             }
         }

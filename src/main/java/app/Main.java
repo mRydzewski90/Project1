@@ -1,6 +1,6 @@
 package app;
 
-import utilities.AfterStartTheProgram;
+import utilities.CreateFolderWithShoppingList;
 import utilities.Information;
 import utilities.OperationOnList;
 
@@ -11,7 +11,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        AfterStartTheProgram folders = new AfterStartTheProgram();
+        CreateFolderWithShoppingList folders = new CreateFolderWithShoppingList();
         folders.createFolder();
         System.out.println("Welcome in Shopping List Application\n");
         String option;
