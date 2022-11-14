@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class OperationOnList {
 
-    // private String name;   // modyfikator dostępu
     private static final String SHOPPING_LIST_DIR = "ShoppingList//";
     private static final String SHOPPING_LIST_NAME_DIR = "src//main//resources//ImportantFile//lastListName.txt";
 
