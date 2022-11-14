@@ -4,16 +4,18 @@ import app.Main;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class OperationOnList {
 
     // private String name;   // modyfikator dostępu
     private static final String SHOPPING_LIST_DIR = "ShoppingList//";
-    //todo
-    ItemsAndFilePaths items;
+    private static final String SHOPPING_LIST_NAME_DIR = "src//main//resources//ImportantFile//lastListName.txt";
 
-    public void saveList(ArrayList<ItemsAndFilePaths.ShoppingListItems> shoppingList) throws IOException {
+    //todo
+
+    public void saveList(List<ItemsAndFilePaths.ShoppingListItems> shoppingList) throws IOException {
         System.out.println("Enter a file name:");
         ItemsAndFilePaths items = new ItemsAndFilePaths(Main.scanner.next());
 
@@ -25,7 +27,7 @@ public class OperationOnList {
 
         if (lastNameOfList.exists()) {
             System.out.println("Your list has been saved");
-            saveFile = new FileWriter("src//main//resources//ImportantFile//lastListName.txt");
+            saveFile = new FileWriter(SHOPPING_LIST_NAME_DIR);
             saveFile.write(items.getName());
             saveFile.close();
         } else {
@@ -36,16 +38,18 @@ public class OperationOnList {
     public void loadYourLastList() throws IOException {
         BufferedReader fileReader = null;
         String lastListName = "";
-        ItemsAndFilePaths getPath = new ItemsAndFilePaths();
 
-        try {
-            fileReader = new BufferedReader(new FileReader(getPath.getSavedListsFilePath()));
-            lastListName = fileReader.readLine();
-        } finally {
-            if (fileReader != null) {
-                fileReader.close();
+        File listNameCatcher = new File(SHOPPING_LIST_NAME_DIR);
+        if (listNameCatcher.exists())
+            try {
+                fileReader = new BufferedReader(new FileReader(SHOPPING_LIST_NAME_DIR));
+                lastListName = fileReader.readLine();
+            } finally {
+                if (fileReader != null) {
+                    fileReader.close();
+                }
             }
-        }
+
         File lastList = new File(SHOPPING_LIST_DIR + lastListName + ".txt");
 
         if (lastList.exists()) {
@@ -74,24 +78,24 @@ public class OperationOnList {
             System.out.println(list.get(i));
     }
 
-    public void deleteFileWithList() {
-
+    public void deleteShoppingList() {
+        System.out.println("Yours saved list:");
         listFile(new File(SHOPPING_LIST_DIR));
-        System.out.println("Which list you want to delete? Choose correct number");
-        String listToBeDeleted = Main.scanner.nextLine();
+        System.out.println("\nWhich list you want to delete? Choose correct number");
+        String listToBeDeleted = Main.scanner.next().toLowerCase();
         File deleteFile = new File(SHOPPING_LIST_DIR + listToBeDeleted + ".txt");
 
         if (!deleteFile.exists()) {
             System.out.println("First you need to create a file to be able to delete it");
         } else {
             System.out.println("Do you want to delete the recently added file? 'yes' or 'no'");
-            listToBeDeleted = Main.scanner.nextLine();
+            listToBeDeleted = Main.scanner.next().toLowerCase();
 
             if (listToBeDeleted.equals("yes")) {
                 deleteFile.delete();
 
                 if (deleteFile.exists()) {
-                    System.out.println("Houston, we have a problem");
+                    System.out.println("System has a problem, the file has not been deleted");
                 } else {
                     System.out.println("The file has been deleted ");
                 }
@@ -138,5 +142,4 @@ public class OperationOnList {
             }
         }
     }
-
 }

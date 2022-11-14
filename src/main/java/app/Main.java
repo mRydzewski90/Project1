@@ -16,6 +16,7 @@ public class Main {
         System.out.println("Welcome in Shopping List Application\n");
         String option;
 
+
         do {
             System.out.println("\nYou can choose this options : Help, Create, Last, Change, Delete, Exit");
             option = scanner.next().toLowerCase();
@@ -35,7 +36,7 @@ public class Main {
                     break;
                 case "delete":
                     OperationOnList deleteList = new OperationOnList();
-                    deleteList.deleteFileWithList();
+                    deleteList.deleteShoppingList();
                     break;
                 case "change":
                     OperationOnList change = new OperationOnList();
