@@ -12,17 +12,17 @@ public class LoadAndCloneList {
         while (flag) {
             String choose;
             String clone;
-            System.out.println("Which list would you like to clone or if you want you can show saved list beafore clone" + "\n Write 'Show' or 'Clone'" + "\nif ypu wanna quite write 'Exit'");
+            System.out.println("Which list would you like to clone or if you want you can show saved list before clone" + "\n Write 'Show' or 'Clone'" + "\nif ypu wanna quite write 'Exit'");
             choose = Main.scanner.nextLine().toLowerCase();
 
             if (choose.equals("show")) {
                 System.out.println("Your Saved Lists");
-                OperationOnList.listFile(new File("ShoppingList//"));
+                OperationOnList.listFile();
                 ShowLoaderList a = new ShowLoaderList();
                 a.yourSavedList();
 
             } else if (choose.equals("clone")) {
-                OperationOnList.listFile(new File("ShoppingList//"));
+                OperationOnList.listFile();
                 System.out.println("Which list would you like to clone");
                 ShowLoaderList a = new ShowLoaderList();
                 a.yourSavedList();
