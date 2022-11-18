@@ -17,10 +17,10 @@ public class DecisionToSave {
         } while (!input.equals("yes") && !input.equals("no"));
 
         if (input.equals("yes")) {
-            OperationOnList operationofList = new OperationOnList();
-            operationofList.saveList(shoppingList);
+            OperationOnList operationOnList = new OperationOnList();
+            operationOnList.saveShoppingList(shoppingList);
         } else {
-            System.out.println("list has not been saved");
+            System.out.println("List has not been saved");
         }
         return false;
     }
