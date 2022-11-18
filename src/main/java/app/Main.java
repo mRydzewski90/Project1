@@ -15,6 +15,7 @@ public class Main {
         folders.createFolder();
         System.out.println("Welcome in Shopping List Application\n");
         String option;
+        OperationOnList operation = new OperationOnList();
 
 
         do {
@@ -27,20 +28,16 @@ public class Main {
                     printInstruction.loadInformation();
                     break;
                 case "create":
-                    OperationOnList list = new OperationOnList();
-                    list.addItemsToList();
+                    operation.createShoppingList();
                     break;
                 case "last":
-                    OperationOnList load = new OperationOnList();
-                    load.loadYourLastList();
+                    operation.loadLastShoppingList();
                     break;
                 case "delete":
-                    OperationOnList deleteList = new OperationOnList();
-                    deleteList.deleteShoppingList();
+                    operation.deleteShoppingList();
                     break;
                 case "change":
-                    OperationOnList change = new OperationOnList();
-                    change.showList();
+                    operation.showShoppingList();
                     break;
                 default:
                     if (!option.equals("exit"))

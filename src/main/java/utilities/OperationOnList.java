@@ -10,18 +10,16 @@ import java.util.Scanner;
 public class OperationOnList {
 
     private static final String SHOPPING_LIST_DIR = "ShoppingList//";
-    private static final String SHOPPING_LIST_NAME_DIR = "src//main//resources//ImportantFile//lastListName.txt";
+    private static final File SHOPPING_LIST_NAME_DIR = new File("src//main//resources//ImportantFile//lastListName.txt");
 
     //todo
 
-    public void saveList(List<ItemsAndFilePaths.ShoppingListItems> shoppingList) throws IOException {
+    public void saveShoppingList(List<ItemsAndFilePaths.ShoppingListItems> shoppingList) throws IOException {
         System.out.println("Enter a file name:");
         ItemsAndFilePaths items = new ItemsAndFilePaths(Main.scanner.next());
-
         FileWriter saveFile = new FileWriter(items.getSavedListsFilePath());
-        saveFile.write(String.valueOf(shoppingList));
+        saveFile.write(formatShoppingList(shoppingList));
         saveFile.close();
-
         File lastNameOfList = new File(items.getSavedListsFilePath());
 
         if (lastNameOfList.exists()) {
@@ -34,27 +32,28 @@ public class OperationOnList {
         }
     }
 
-    public void loadYourLastList() throws IOException {
+    private String formatShoppingList(List<ItemsAndFilePaths.ShoppingListItems> shoppingList) {
+        StringBuilder sb = new StringBuilder();
+        for (ItemsAndFilePaths.ShoppingListItems shoppingListItems : shoppingList) {
+            sb.append(shoppingListItems.toString()).append(System.lineSeparator());
+        }
+        return sb.toString();
+    }
+
+    public void loadLastShoppingList() throws IOException {
         BufferedReader fileReader = null;
         String lastListName = "";
 
-        File listNameCatcher = new File(SHOPPING_LIST_NAME_DIR);
-        if (listNameCatcher.exists())
-            try {
-                fileReader = new BufferedReader(new FileReader(SHOPPING_LIST_NAME_DIR));
-                lastListName = fileReader.readLine();
-            } finally {
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-            }
-
+        if (SHOPPING_LIST_NAME_DIR.exists()) {
+            fileReader = new BufferedReader(new FileReader(SHOPPING_LIST_NAME_DIR));
+            lastListName = fileReader.readLine();
+            fileReader.close();
+        }
         File lastList = new File(SHOPPING_LIST_DIR + lastListName + ".txt");
 
         if (lastList.exists()) {
             System.out.println("Your shopping list");
             Scanner myReader = new Scanner(lastList);
-
             while (myReader.hasNext())
                 System.out.println(myReader.nextLine());
             myReader.close();
@@ -63,9 +62,9 @@ public class OperationOnList {
         }
     }
 
-    public void showList() throws FileNotFoundException {
-        listFile(new File(SHOPPING_LIST_DIR));
-        System.out.println("witch list do you want to change");
+    public void showShoppingList() throws FileNotFoundException {
+        listFile();
+        System.out.println("Witch list do you want to change?");
         String name = Main.scanner.nextLine();
         Scanner scan = new Scanner(new File(SHOPPING_LIST_DIR + name + ".txt"));
         ArrayList<String> list = new ArrayList<String>();
@@ -79,8 +78,8 @@ public class OperationOnList {
 
     public void deleteShoppingList() {
         System.out.println("Yours saved list:");
-        listFile(new File(SHOPPING_LIST_DIR));
-        System.out.println("\nWhich list you want to delete? Choose correct number");
+        listFile();
+        System.out.println("\nWhich list you want to delete? Write correct list name");
         String listToBeDeleted = Main.scanner.next().toLowerCase();
         File deleteFile = new File(SHOPPING_LIST_DIR + listToBeDeleted + ".txt");
 
@@ -91,50 +90,47 @@ public class OperationOnList {
             listToBeDeleted = Main.scanner.next().toLowerCase();
 
             if (listToBeDeleted.equals("yes")) {
-                deleteFile.delete();
 
-                if (deleteFile.exists()) {
-                    System.out.println("System has a problem, the file has not been deleted");
-                } else {
+                if (deleteFile.delete()) {
                     System.out.println("The file has been deleted ");
+                } else {
+                    System.out.println("System has a problem, the file has not been deleted");
                 }
             }
         }
     }
 
-    private static String sep = "";
+    public static void listFile() {
+        File shoppingListDir = new File(SHOPPING_LIST_DIR);
+        File[] fileList = shoppingListDir.listFiles();
 
-    public static void listFile(File file) {
-        sep += ".";
-        if (file.isDirectory()) {
-            File[] fileList = file.listFiles();
-
-            for (int i = 0; i < fileList.length; i++) {
-                listFile(fileList[i]);
+        if (fileList != null) {
+            for (File file : fileList) {
+                System.out.println(file.getName());
             }
         } else {
-            System.out.println(sep + file.getName());
+            System.out.println("No saved list found");
         }
-        sep = sep.substring(0, sep.lastIndexOf('.'));
     }
 
-    public void addItemsToList() throws IOException {
+    public void createShoppingList() throws IOException {
         ArrayList<ItemsAndFilePaths.ShoppingListItems> shoppingList = new ArrayList<>();
         boolean isRunning = true;
-        System.out.println("'quit' to end creating and show your list");
+        System.out.println("Write 'quit' to end creating and show your list");
 
         while (isRunning) {
             System.out.println("Add product: ");
             String product = Main.scanner.next().toLowerCase();
+
             if (!product.equalsIgnoreCase("quit")) {
                 System.out.println("Add amount: ");
                 int amount = Main.scanner.nextInt();
                 ItemsAndFilePaths.ShoppingListItems all = new ItemsAndFilePaths.ShoppingListItems(product, amount);
                 shoppingList.add(all);
             } else {
-                System.out.println("Your shopping list ");
+                System.out.println("Your shopping list");
                 for (ItemsAndFilePaths.ShoppingListItems t : shoppingList) {
-                    System.out.println("Product: " + t.getProduct() + "\nAmount: " + t.getAmount());
+                    System.out.println(t.toString());
                 }
                 DecisionToSave choice = new DecisionToSave();
                 isRunning = choice.saveToFile(shoppingList);
