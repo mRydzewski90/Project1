@@ -8,8 +8,8 @@ public class Information {
 
     public void loadInformation() throws IOException {
 
-        File helpInfromation = new File("src//main//resources//ImportantFile//Help.txt");
-        Scanner myReader = new Scanner(helpInfromation);
+        File helpInformation = new File("src//main//resources//ImportantFile//Help.txt");
+        Scanner myReader = new Scanner(helpInformation);
 
         while (myReader.hasNext())
             System.out.println(myReader.nextLine());
