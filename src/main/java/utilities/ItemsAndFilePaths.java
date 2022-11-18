@@ -47,7 +47,7 @@ public class ItemsAndFilePaths {
         }
 
         public String toString() {
-            return "Product: " + product + " amount: " + amount;
+            return "Product: " + product + ", Amount: " + amount;
         }
     }
 }
