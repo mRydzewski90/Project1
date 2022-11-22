@@ -1,9 +1,9 @@
 package app;
 
-import utilities.CreateFolderWithShoppingList;
 import utilities.Information;
 import utilities.OperationOnList;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,8 +11,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        CreateFolderWithShoppingList folders = new CreateFolderWithShoppingList();
-        folders.createFolder();
+        new File("ShoppingList").mkdir();
         System.out.println("Welcome in Shopping List Application\n");
         String option;
         OperationOnList operation = new OperationOnList();
@@ -37,7 +36,7 @@ public class Main {
                     operation.deleteShoppingList();
                     break;
                 case "change":
-                    operation.showShoppingList();
+                    operation.changeProductInShoppingList();
                     break;
                 default:
                     if (!option.equals("exit"))

@@ -4,6 +4,7 @@ import app.Main;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -62,18 +63,27 @@ public class OperationOnList {
         }
     }
 
-    public void showShoppingList() throws FileNotFoundException {
+    // TODO: 22.11.2022  
+    public void changeProductInShoppingList() throws FileNotFoundException {
+        ItemsAndFilePaths.ShoppingListItems listItems = new ItemsAndFilePaths.ShoppingListItems();
+        System.out.println("Your saved shopping list");
         listFile();
-        System.out.println("Witch list do you want to change?");
-        String name = Main.scanner.nextLine();
-        Scanner scan = new Scanner(new File(SHOPPING_LIST_DIR + name + ".txt"));
-        ArrayList<String> list = new ArrayList<String>();
-        while (scan.hasNextLine()) {
-            String element = scan.nextLine();
-            list.add(element);
+        System.out.println("\nWitch list do you want to change?");
+        ItemsAndFilePaths items = new ItemsAndFilePaths(Main.scanner.next());
+        File readFile = new File(items.getSavedListsFilePath());
+
+        if (readFile.exists()) {
+            System.out.println("Witch product do you want to change?\n");
+            System.out.println("List name: " + items.getName());
+            Scanner myReader = new Scanner(readFile);
+            String[] array = new String[]{myReader.nextLine()};
+            while (myReader.hasNext())
+                
+            myReader.close();
+        } else {
+            System.out.println("You don`t have any list yet");
         }
-        for (int i = 0; i < list.size(); i++)
-            System.out.println(list.get(i));
+
     }
 
     public void deleteShoppingList() {
